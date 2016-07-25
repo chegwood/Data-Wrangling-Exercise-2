@@ -30,7 +30,7 @@ conditional_age_means <- titanic_original %>%
 
 titanic_clean_2 <- titanic_original %>%
   mutate(embarked = ifelse(embarked == "", 'S', embarked)) %>% 
-  #can we filter this age replacement more? By child vs. adult vs. parent? By passanger class? By price of ticket?
+  #can we filter this age replacement more? By passanger class? By gender? By whether they survived?
   mutate(age_join = age) %>% 
   left_join(conditional_age_means, by = c('pclass', 'survived', 'sex', 'age_join')) %>% 
   mutate(age = ifelse(is.na(age.x), age.y, age.x)) %>% 
